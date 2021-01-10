@@ -1,0 +1,7 @@
+Feasibility: The case of automated video tagging is feasible for both live and stored videos. If the requirement of tag generation is not instateneous, it can be performed on personal hardware. But if live videos are to be tagged, it is advisible to call an external API like Amazon Rekognition.
+
+Methodology: Fisrt step is to extract frames from videos using OpenCV. Cosidering we intend to tag major components of a video, we can capture 1 frame for every 5-10 seconds. In case of live video,we increase frame extraction to 1 frame per 2 seconds. Then we pass this stream of frames to a local object recognition model like Inception or to a similar API service like Amazon Rekognition. For live videos, it is recommended to use external API services due to signinficant computation requirements. The classes recognized by object recognition model are used as tags.
+
+This can further be enhanced by analyzing text associated with videos. Generally, videos on social media are accompanied by titles or text, we can tokenize such comments and compare with recognized classes to retain only the most relevant tags.
+
+Challenges: First challenge is the I/O operations. Considering we have to deploy this solution on local machine, we need to fix when a video is removed from system as new videos are generated at rapid pace. Secondly, bandwidth and datacap limitations are to be kept in mind if we use external APIs.
